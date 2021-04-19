@@ -1,0 +1,41 @@
+<div id="container" class="container-fluid"></div>
+
+{% block jss %}
+
+<script>
+        var config = {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: {{ data.values|safe }},
+            backgroundColor: [
+                'darkcyan', 'darkorange', 'darkseagreen', 'lightpink', 'lightblue', 'red', 'black', 'blue'
+            ],
+            label: false
+        }],
+        labels: {{ data.categories|safe }}
+        },
+        options: {
+            responsive: true
+        }
+        };
+
+        window.onload = function() {
+            var make_pie_chart = document.getElementById('pieChart').getContext('2d');
+            window.myPie = new Chart(make_pie_chart, config);
+        };
+
+</script>
+
+{% endblock jss %}
+
+
+<!-- Chartjs libraries -->
+
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
+
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="http://code.highcharts.com/modules/offline-exporting.js"></script>
+<script src="http://code.highcharts.com/modules/export-data.js"></script>
+<script src="http://code.highcharts.com/modules/series-label.js"></script>
+<script src="http://code.highcharts.com/modules/data.js"></script>
